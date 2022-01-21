@@ -4,10 +4,11 @@
  * @Autor: sanjin
  * @Date: 2022-01-19 16:04:34
  * @LastEditors: sanjin
- * @LastEditTime: 2022-01-19 17:08:15
+ * @LastEditTime: 2022-01-20 16:08:31
  */
 import React, { memo, useEffect, useState } from "react";
 import TaskItem from "./components/TaskItem";
+import styleCss from "./index.module.scss";
 const Task = (props) => {
   const [taskList, setTaskList] = useState([]);
 
@@ -143,8 +144,12 @@ const Task = (props) => {
       ]);
     }, 50);
   }, []);
-  return <div>
-    <TaskItem></TaskItem>
-  </div>;
+  return (
+    <div className={styleCss.wrapper}>
+      {taskList.map((item) => {
+        return <TaskItem key={item.id} detail={item}></TaskItem>;
+      })}
+    </div>
+  );
 };
 export default memo(Task);
